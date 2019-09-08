@@ -10,6 +10,10 @@
             ]
         },
         "interface-name": [true, "never-prefix"],
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "no-console": false,
+        "triple-equals": true,
+        "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+        "no-var-requires": false,
     }
  }
