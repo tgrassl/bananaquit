@@ -1,5 +1,5 @@
 {
-  "name": "bananaquit",
+  "name": "bananaquitjs",
   "version": "1.0.0",
   "description": "Bananaquit is a small and simple component framework using TypeScript/JavaScript.",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "Timon Grassl <grassl.timon@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tgrassl/bananaquit/issues"
   },
