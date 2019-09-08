@@ -1,15 +1,15 @@
-import { ComponentData, ComponentFactory, BasicChanges, COMPONENT_DATA } from '../../core';
+import { BasicChanges, COMPONENT_DATA, ComponentData, ComponentFactory } from '../../core';
 
 export class Renderer {
-  public components: any[] = [];
-  public renderedComponents: any[] = [];
-  public selectorComponentsMap: any = {};
-
-  private static _instance: Renderer;
 
   public static get Instance() {
     return this._instance || (this._instance = new this());
   }
+
+  private static _instance: Renderer;
+  public components: any[] = [];
+  public renderedComponents: any[] = [];
+  public selectorComponentsMap: any = {};
 
   public renderComponents(components: any[]) {
     for (let i = 0, n = components.length; i < n; i++) {
@@ -48,6 +48,13 @@ export class Renderer {
     });
   }
 
+  public mapChanges(mutation: MutationRecord): BasicChanges {
+    return {
+      type: mutation.type,
+      change: mutation,
+    };
+  }
+
   private getComponentData(component: any): ComponentData {
     return Reflect.getMetadata(COMPONENT_DATA, component);
   }
@@ -58,12 +65,5 @@ export class Renderer {
         componentData.meta.baseClass.onChanges(changes);
       }
     }
-  }
-
-  public mapChanges(mutation: MutationRecord): BasicChanges {
-    return {
-      type: mutation.type,
-      change: mutation,
-    };
   }
 }

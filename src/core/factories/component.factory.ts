@@ -1,7 +1,7 @@
 import { BaseComponent } from './../base.component';
 
 export class ComponentFactory {
-  createComponent(data: any, type?: any): BaseComponent;
+  public createComponent(data: any, type?: any): BaseComponent;
 
   public createComponent(data: object, type?: any): BaseComponent | null {
     const component: BaseComponent | null = this.getNewComponent(type, data);

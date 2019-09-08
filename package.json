@@ -2,8 +2,8 @@
   "name": "bananaquit",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/public-api.js",
-  "types": "dist/public-api.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tgrassl/bananaquit.git"

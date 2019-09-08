@@ -27,7 +27,7 @@ export class DomWatcher {
   }
 
   private renderAddedNode(mutation: MutationRecord) {
-    const lastAddedNode: HTMLElement = <HTMLElement>mutation.addedNodes[mutation.addedNodes.length - 1];
+    const lastAddedNode: HTMLElement = mutation.addedNodes[mutation.addedNodes.length - 1] as HTMLElement;
     if (lastAddedNode && lastAddedNode.tagName) {
       const addedSelector = lastAddedNode.tagName.toLowerCase();
       this.renderer.renderComponentBySelector(addedSelector, true);

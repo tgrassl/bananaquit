@@ -15,7 +15,7 @@ export class BaseComponent {
       const componentsInDOM = document.getElementsByTagName(this.selector);
 
       for (let i = 0, n = componentsInDOM.length; i < n; i++) {
-        const element: HTMLElement = <HTMLElement>componentsInDOM.item(i);
+        const element: HTMLElement = componentsInDOM.item(i) as HTMLElement;
         if (element && this.template) {
           element.innerHTML = this.template;
         }
