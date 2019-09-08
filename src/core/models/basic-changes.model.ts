@@ -1,4 +1,4 @@
 export interface BasicChanges {
-    type: string;
-    change: any;
+  type: string;
+  change: any;
 }

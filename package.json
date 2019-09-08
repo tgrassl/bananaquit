@@ -1,9 +1,9 @@
 {
   "name": "bananaquit",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/public-api.js",
-  "types" : "dist/public-api.d.ts",
+  "types": "dist/public-api.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tgrassl/bananaquit.git"
@@ -15,14 +15,26 @@
     "url": "https://github.com/tgrassl/bananaquit/issues"
   },
   "homepage": "https://github.com/tgrassl/bananaquit#readme",
+  "files": ["dist/**/*"],
   "scripts": {
-    "build": "tsc"
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "bumbVersion": "npm version patch"
   },
   "dependencies": {
     "@types/node": "^12.7.4",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "prettier": "^1.18.2",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.6.2"
   }
 }

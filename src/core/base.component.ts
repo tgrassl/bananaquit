@@ -1,27 +1,25 @@
-
 export class BaseComponent {
+  private selector: string;
+  private template: string = '';
 
-    private selector: string;
-    private template: string = '';
+  constructor(selector: string, template?: string) {
+    this.selector = selector;
 
-    constructor(selector: string, template?: string) {
-        this.selector = selector;
-
-        if(template) {
-            this.template = template;
-        }
+    if (template) {
+      this.template = template;
     }
+  }
 
-    public render(): void {
-        if(this.selector) {
-            const componentsInDOM = document.getElementsByTagName(this.selector);
+  public render(): void {
+    if (this.selector) {
+      const componentsInDOM = document.getElementsByTagName(this.selector);
 
-            for(let i = 0, n = componentsInDOM.length; i < n; i++) {
-                const element: HTMLElement = <HTMLElement>componentsInDOM.item(i);
-                if(element && this.template) {
-                    element.innerHTML = this.template;
-                }
-            }
+      for (let i = 0, n = componentsInDOM.length; i < n; i++) {
+        const element: HTMLElement = <HTMLElement>componentsInDOM.item(i);
+        if (element && this.template) {
+          element.innerHTML = this.template;
         }
+      }
     }
+  }
 }
