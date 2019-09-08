@@ -25,8 +25,8 @@ export class Renderer {
       component.render();
       this.renderedComponents.push(componentToRender);
 
-      if (componentData.meta.baseClass.afterRenderInit) {
-        componentData.meta.baseClass.afterRenderInit();
+      if (componentData.meta.baseClass.afterRender) {
+        componentData.meta.baseClass.afterRender();
       }
 
       this.triggerChanges(componentData, canTriggerChanges);
