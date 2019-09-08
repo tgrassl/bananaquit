@@ -1,7 +1,6 @@
 import { BasicChanges, COMPONENT_DATA, ComponentData, ComponentFactory } from '../../core';
 
 export class Renderer {
-
   public static get Instance() {
     return this._instance || (this._instance = new this());
   }
