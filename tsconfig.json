@@ -6,7 +6,7 @@
         "target": "es5",
         "module": "commonjs",
         "declaration": true,
-        "outDir": "./dist",
+        "outDir": "./",
         "strict": true,
 
         "paths": {

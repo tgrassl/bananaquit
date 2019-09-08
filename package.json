@@ -8,14 +8,17 @@
     "type": "git",
     "url": "git+https://github.com/tgrassl/bananaquit.git"
   },
-  "keywords": [],
+  "keywords": ["typescript", "component"],
   "author": "Timon Grassl <grassl.timon@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tgrassl/bananaquit/issues"
   },
   "homepage": "https://github.com/tgrassl/bananaquit#readme",
-  "files": ["dist/**/*"],
+  "files": [
+    "core/*",
+    "index*"
+  ],
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
