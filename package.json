@@ -1,0 +1,28 @@
+{
+  "name": "bananaquit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/public-api.js",
+  "types" : "dist/public-api.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgrassl/bananaquit.git"
+  },
+  "keywords": [],
+  "author": "Timon Grassl <grassl.timon@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tgrassl/bananaquit/issues"
+  },
+  "homepage": "https://github.com/tgrassl/bananaquit#readme",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/node": "^12.7.4",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.2"
+  }
+}
