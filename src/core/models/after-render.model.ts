@@ -1,3 +1,3 @@
-export interface AfterRenderInit {
-  afterRenderInit(): void;
+export interface AfterRender {
+  afterRender(): void;
 }
