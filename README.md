@@ -5,15 +5,14 @@
 
 Bananaquit is a small and simple component framework using TypeScript/JavaScript.<br/><br/>
 
-## Getting started
-
+## Install 
 Install bananaquit using npm:
 ```javascript
 npm install bananaquitjs
 ```
-
+## Getting started
 Create a *main.ts* and *index.html* file. This will be your entry point of your application.
-Open the *index.html* file and reference the *main.ts* file.
+Open the *index.html* file and reference the *main.ts* file:
 ```html
 <html>
     <head>
@@ -26,7 +25,7 @@ Open the *index.html* file and reference the *main.ts* file.
 </html>
 ```
 
-Inside the *main.ts* file import the Bootstrapper, create a component array and finally bootstrap the application with your components. 
+Inside the *main.ts* file import the Bootstrapper, create a component array and finally bootstrap the application with your components: 
 
 ```javascript
 import { Bootstrapper } from 'bananaquitjs/core';
@@ -39,10 +38,11 @@ new Bootstrapper().bootstrapApp(appComponents);
 ## Components
 
 To create a new component create a new .ts file (e.g. login.component.ts) in your project.
-Open it and create a new class e.g. LoginComponent. (We recommended to end your component class names with "Component" for a better overview as the application grows).
+Open it and create a new class e.g. LoginComponent.
+*(We recommended to end your component class names with "Component" for a better overview as the application grows).*
 
 Decorate the class with the *@Component* decorator from `bananquitjs/core`.
-Inside it set the selector and the template you want your component to use.
+There set the selector and the template you want your component to use.
 
 ```javascript
 import { Component } from 'bananaquitjs/core';
@@ -83,7 +83,7 @@ const appComponents = [
 ]
 ...
 ```
-Finally add your selector inside your index.html and you are ready to go.
+Finally add the selector inside the index.html and you are ready to go.
 
 ```html
 <body>
