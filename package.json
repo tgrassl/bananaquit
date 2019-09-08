@@ -28,7 +28,7 @@
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
-    "bumbVersion": "npm version patch"
+    "bumpVersion": "npm version patch"
   },
   "dependencies": {
     "@types/node": "^12.7.4",
