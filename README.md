@@ -2,8 +2,9 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
+![npm](https://img.shields.io/npm/v/bananaquitjs?style=for-the-badge)
 
-Bananaquit is a small and simple component framework using TypeScript/JavaScript.<br/><br/>
+Bananaquit is a small and simple component framework for apps using TypeScript.<br/>
 
 ## Install 
 Install bananaquit using npm:
@@ -49,9 +50,7 @@ import { Component } from 'bananaquitjs/core';
 
 @Component({
     selector: 'hello-world-component',
-    template: `<div>
-            Hello world
-        </div>`,
+    template: `<div>Hello world</div>`,
 })
 export class HelloWorldComponent {
 
@@ -104,4 +103,5 @@ Lifecycle | Description | Usage
 - Improvements
 - Component Props
 - Enhanced Lifecycles
+- Component Style Sheet Handling
 - CLI to create components, etc.
