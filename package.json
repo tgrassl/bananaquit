@@ -25,10 +25,13 @@
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "clean": "ts-node cleanup.ts",
+    "clean": "ts-node dev-scripts/cleanup.ts",
+    "watch": "ts-node dev-scripts/dev-file-watcher.ts",
+    "moveDist": "ts-node dev-scripts/dist-mover.ts",
     "build": "tsc",
-    "prepare": "npm run clean && npm run build",
+    "prepare": "npm run clean && npm run build && npm run moveDist",
     "prepublishOnly": "npm test && npm run lint",
+    "postpublish": "npm run clean",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
@@ -36,6 +39,7 @@
   },
   "dependencies": {
     "@types/node": "^12.7.4",
+    "chokidar": "^3.0.2",
     "fs-extra": "^8.1.0",
     "reflect-metadata": "^0.1.13"
   },

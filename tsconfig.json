@@ -6,8 +6,10 @@
         "target": "es5",
         "module": "commonjs",
         "declaration": true,
-        "outDir": "./",
+        "outDir": "./dist",
         "strict": true,
+        "noImplicitAny": false,
+        "types": ["node"],
 
         "paths": {
             "@bananaquit/core": ["src/core"],
