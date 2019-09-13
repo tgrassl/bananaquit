@@ -19,13 +19,13 @@ const watcher = chokidar.watch(dirToWatch, {
 log('Watching changes in files using pattern ' + dirToWatch);
 
 watcher
-    .on('add', path => buildAndCopy(path, 'add'))
-    .on('change', path => buildAndCopy(path, 'change'))
-    .on('unlink', path => buildAndCopy(path, 'unlink'));
+    .on('add', path => buildAndCopy(path, 'added'))
+    .on('change', path => buildAndCopy(path, 'changed'))
+    .on('unlink', path => buildAndCopy(path, 'unlinked'));
 
 // Build package and copy dist files + package.json to project
 const buildAndCopy = (path, type) => {
-    log(`File ${path} has been ${type}ed`);
+    log(`--- File ${path} has been ${type} ---`);
     log('Rebuilding Package...');
     childProcess.exec('npm run build', [], (error, stdout, stderr) => {
         if(error) {
