@@ -22,17 +22,17 @@ export class Renderer {
   }
 
   public updateComponent(node, componentToUpdate: any, componentData: any) {
-      if(this.dirtyComponents.includes(componentToUpdate)) {
-          const template = componentData.template;
-          const valueMap = componentToUpdate;
-          
-          Object.assign(valueMap, getAttributesOfNode(node));
+    if (this.dirtyComponents.includes(componentToUpdate)) {
+      const template = componentData.template;
+      const valueMap = componentToUpdate;
 
-          const newTemplate = getTemplateBinding(template, valueMap); 
-          componentToUpdate.innerHTML = newTemplate;
-          const diretyCompIndex = this.dirtyComponents.indexOf(componentToUpdate);
-          this.dirtyComponents.splice(diretyCompIndex, 1);
-      }
+      Object.assign(valueMap, getAttributesOfNode(node));
+
+      const newTemplate = getTemplateBinding(template, valueMap);
+      componentToUpdate.innerHTML = newTemplate;
+      const diretyCompIndex = this.dirtyComponents.indexOf(componentToUpdate);
+      this.dirtyComponents.splice(diretyCompIndex, 1);
+    }
   }
 
   public renderComponent(componentToRender: any, canTriggerChanges: boolean) {
@@ -42,32 +42,32 @@ export class Renderer {
     if (componentData) {
       const selector = componentData.selector;
       const template = componentData.template;
-      
+
       if (selector) {
         const componentsInDOM = document.getElementsByTagName(selector);
-  
+
         for (let i = 0, n = componentsInDOM.length; i < n; i++) {
           const element: HTMLElement = componentsInDOM.item(i) as HTMLElement;
           let component;
 
-          if(!this.renderedComponents[i]) {
+          if (!this.renderedComponents[i]) {
             component = new ComponentFactory().createComponent(componentData, componentToRender);
             this.selectorComponentsMap[componentData.selector] = componentToRender;
             this.renderedComponents.push(component);
-         } else {
-           component = this.renderedComponents[i];
-         }
+          } else {
+            component = this.renderedComponents[i];
+          }
 
-         Object.keys(baseClass).forEach(key => {
-          setPropertyDescriptor(baseClass, key, () => this.updateComponent(element, component, componentData));
-        });
+          Object.keys(baseClass).forEach(key => {
+            setPropertyDescriptor(baseClass, key, () => this.updateComponent(element, component, componentData));
+          });
 
           Object.assign(component, getAttributesOfNode(element));
 
-          const newTemplate = getTemplateBinding(template, component); 
+          const newTemplate = getTemplateBinding(template, component);
           element.innerHTML = newTemplate;
 
-          if(!this.componentWithListeners.includes(i)) {
+          if (!this.componentWithListeners.includes(i)) {
             bindEventListener(element, template, baseClass);
             this.componentWithListeners.push(i);
           }
