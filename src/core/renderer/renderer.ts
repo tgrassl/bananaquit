@@ -1,5 +1,8 @@
 import { BasicChanges, COMPONENT_DATA, ComponentData, ComponentFactory } from '../../core';
+import { bindEventListener, getAttributesOfNode, getTemplateBinding } from '../binding/binder';
+import { setPropertyDescriptor } from './change-detection';
 
+// TODO remake this class and switch to virtual-dom
 export class Renderer {
   public static get Instance() {
     return this._instance || (this._instance = new this());
@@ -8,7 +11,9 @@ export class Renderer {
   private static _instance: Renderer;
   public components: any[] = [];
   public renderedComponents: any[] = [];
-  public selectorComponentsMap: any = {};
+  private selectorComponentsMap: any = {};
+  private componentWithListeners: any[] = [];
+  private dirtyComponents: any[] = [];
 
   public renderComponents(components: any[]) {
     for (let i = 0, n = components.length; i < n; i++) {
@@ -16,19 +21,64 @@ export class Renderer {
     }
   }
 
+  public updateComponent(node, componentToUpdate: any, componentData: any) {
+      if(this.dirtyComponents.includes(componentToUpdate)) {
+          const template = componentData.template;
+          const valueMap = componentToUpdate;
+          
+          Object.assign(valueMap, getAttributesOfNode(node));
+
+          const newTemplate = getTemplateBinding(template, valueMap); 
+          componentToUpdate.innerHTML = newTemplate;
+          const diretyCompIndex = this.dirtyComponents.indexOf(componentToUpdate);
+          this.dirtyComponents.splice(diretyCompIndex, 1);
+      }
+  }
+
   public renderComponent(componentToRender: any, canTriggerChanges: boolean) {
     const componentData: ComponentData = this.getComponentData(componentToRender);
-    const component = new ComponentFactory().createComponent(componentData);
-    this.selectorComponentsMap[componentData.selector] = componentToRender;
+    const baseClass = componentData.meta.baseClass;
 
-    if (component) {
-      component.render();
+    if (componentData) {
+      const selector = componentData.selector;
+      const template = componentData.template;
+      
+      if (selector) {
+        const componentsInDOM = document.getElementsByTagName(selector);
+  
+        for (let i = 0, n = componentsInDOM.length; i < n; i++) {
+          const element: HTMLElement = componentsInDOM.item(i) as HTMLElement;
+          let component;
+
+          if(!this.renderedComponents[i]) {
+            component = new ComponentFactory().createComponent(componentData, componentToRender);
+            this.selectorComponentsMap[componentData.selector] = componentToRender;
+            this.renderedComponents.push(component);
+         } else {
+           component = this.renderedComponents[i];
+         }
+
+         Object.keys(baseClass).forEach(key => {
+          setPropertyDescriptor(baseClass, key, () => this.updateComponent(element, component, componentData));
+        });
+
+          Object.assign(component, getAttributesOfNode(element));
+
+          const newTemplate = getTemplateBinding(template, component); 
+          element.innerHTML = newTemplate;
+
+          if(!this.componentWithListeners.includes(i)) {
+            bindEventListener(element, template, baseClass);
+            this.componentWithListeners.push(i);
+          }
+        }
+      }
+
       this.renderedComponents.push(componentToRender);
 
       if (componentData.meta.baseClass.afterRender) {
         componentData.meta.baseClass.afterRender();
       }
-
       this.triggerChanges(componentData, canTriggerChanges);
     }
   }

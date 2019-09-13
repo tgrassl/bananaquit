@@ -16,6 +16,7 @@ export function Component(componentData: ComponentData) {
     checkLifecycle(originalClass);
 
     componentData.meta = {
+      ctor: target,
       baseClass: originalClass,
     };
 
