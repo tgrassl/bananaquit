@@ -12,7 +12,7 @@ Install bananaquit using npm:
 npm install bananaquitjs
 ```
 ## Getting started
-Create a *main.ts* and *index.html* file. This will be your entry point of your application.
+Create a *main.ts* and *index.html* file. This will be the entry point of your application.
 Open the *index.html* file and reference the *main.ts* file:
 ```html
 <html>
@@ -92,6 +92,65 @@ Finally add the selector inside the index.html and you are ready to go.
 </body>
 ```
 
+### Data Binding
+```javascript
+...
+@Component({
+    selector: 'hello-world-component',
+    template: `<div>Hello {myVar}</div>`,
+})
+export class HelloWorldComponent {
+    public myVar = 'world';
+    ...
+}
+```
+
+### Data Inputs
+*test.component.ts*
+```javascript
+...
+@Component({
+    selector: 'hello-world-component',
+    template: `<div>{firstWord} {secondWord}</div>`,
+})
+...
+```
+*index.html*
+```html
+<body>
+  ...
+  <hello-world-component firstWord="Hello" secondWord="world"></hello-world-component>
+  ...
+</body>
+```
+Output:
+```html
+<body>
+  ...
+  <hello-world-component firstWord="Hello" secondWord="world">
+      <div>Hello world</div>
+  </hello-world-component>
+  ...
+</body>
+```
+
+### Listeners
+__bq-click__
+```javascript
+...
+@Component({
+    selector: 'hello-world-component',
+    template: `<button bq-click="myFunc()">Click</button>`,
+})
+export class HelloWorldComponent {
+    public myFunc() {
+       console.log('yey! Element was clicked!!');
+    }
+    ...
+}
+```
+
+
 ## Lifecycles
 Lifecycle | Description | Usage
 --- | --- | ---
@@ -101,7 +160,6 @@ Lifecycle | Description | Usage
 
 ## TODO
 - Improvements
-- Component Props
+- Implement virtual-dom
 - Enhanced Lifecycles
-- Component Style Sheet Handling
 - CLI to create components, etc.
