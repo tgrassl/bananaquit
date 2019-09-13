@@ -6,6 +6,6 @@ export class Bootstrapper {
     const renderer = Renderer.Instance;
     renderer.components = components;
     renderer.renderComponents(components);
-    new DomWatcher().watch();
+    // new DomWatcher().watch();
   }
 }
