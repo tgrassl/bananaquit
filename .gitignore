@@ -14,8 +14,6 @@ core
 index.*
 dev-config.ts
 
-.rts*
-
 ### Node ###
 # Logs
 logs
