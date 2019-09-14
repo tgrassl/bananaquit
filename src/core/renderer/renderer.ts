@@ -62,7 +62,7 @@ export class Renderer {
           Object.keys(component).forEach(key => {
             setPropertyDescriptor(component, key, () => {
               this.dirtyComponents.push(component);
-              this.updateComponent(element, componentData, component)
+              this.updateComponent(element, componentData, component);
             });
           });
 
