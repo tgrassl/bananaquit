@@ -10,7 +10,8 @@
   },
   "keywords": [
     "typescript",
-    "component"
+    "component",
+    "banana"
   ],
   "author": "Timon Grassl <grassl.timon@gmail.com>",
   "license": "MIT",
