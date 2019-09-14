@@ -10,6 +10,7 @@
         "strict": true,
         "noImplicitAny": false,
         "types": ["node"],
+        "lib": ["es2015", "es2017", "dom"],
 
         "paths": {
             "@bananaquit/core": ["src/core"],
