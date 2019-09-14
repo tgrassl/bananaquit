@@ -1,7 +1,7 @@
 {
   "name": "bananaquitjs",
   "version": "0.1.5",
-  "description": "Bananaquit is a small and simple component framework using TypeScript/JavaScript.",
+  "description": "Bananaquit is a small and simple component framework for apps using TypeScript.",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": {
