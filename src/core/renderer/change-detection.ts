@@ -7,14 +7,10 @@ export function setPropertyDescriptor(obj, prop, callback) {
   let value = obj[prop];
   const descriptor = {
     get() {
-      console.log('getting prop value => ', Date.now());
       return value;
     },
     set(newValue) {
-      console.log('setting prop value => ', Date.now());
       value = newValue;
-      console.log('<!--- value changed!! ---!>');
-      console.log('<!--- Rendering... ---!>');
       callback();
     },
   };

@@ -21,23 +21,22 @@ export class Renderer {
     }
   }
 
-  public updateComponent(node, componentToUpdate: any, componentData: any) {
-    if (this.dirtyComponents.includes(componentToUpdate)) {
+  public updateComponent(node, componentData: any, component: any) {
+    if (this.dirtyComponents.includes(component)) {
       const template = componentData.template;
-      const valueMap = componentToUpdate;
+      const valueMap = component;
 
       Object.assign(valueMap, getAttributesOfNode(node));
 
       const newTemplate = getTemplateBinding(template, valueMap);
-      componentToUpdate.innerHTML = newTemplate;
-      const diretyCompIndex = this.dirtyComponents.indexOf(componentToUpdate);
-      this.dirtyComponents.splice(diretyCompIndex, 1);
+      node.innerHTML = newTemplate;
+      const dirtyCompIndex = this.dirtyComponents.indexOf(component);
+      this.dirtyComponents.splice(dirtyCompIndex, 1);
     }
   }
 
   public renderComponent(componentToRender: any, canTriggerChanges: boolean) {
     const componentData: ComponentData = this.getComponentData(componentToRender);
-    const baseClass = componentData.meta.baseClass;
 
     if (componentData) {
       const selector = componentData.selector;
@@ -48,18 +47,23 @@ export class Renderer {
 
         for (let i = 0, n = componentsInDOM.length; i < n; i++) {
           const element: HTMLElement = componentsInDOM.item(i) as HTMLElement;
-          let component;
+          // let component;
 
-          if (!this.renderedComponents[i]) {
-            component = new ComponentFactory().createComponent(componentData, componentToRender);
-            this.selectorComponentsMap[componentData.selector] = componentToRender;
-            this.renderedComponents.push(component);
-          } else {
-            component = this.renderedComponents[i];
-          }
+          // if (!this.renderedComponents[i]) {
+          //   component = new ComponentFactory().createComponent(componentData, componentToRender);
+          //   this.selectorComponentsMap[componentData.selector] = componentToRender;
+          //   this.renderedComponents.push(component);
+          // } else {
+          //   component = this.renderedComponents[i];
+          // }
 
-          Object.keys(baseClass).forEach(key => {
-            setPropertyDescriptor(baseClass, key, () => this.updateComponent(element, component, componentData));
+          const component = new componentToRender();
+
+          Object.keys(component).forEach(key => {
+            setPropertyDescriptor(component, key, () => {
+              this.dirtyComponents.push(component);
+              this.updateComponent(element, componentData, component)
+            });
           });
 
           Object.assign(component, getAttributesOfNode(element));
@@ -68,7 +72,7 @@ export class Renderer {
           element.innerHTML = newTemplate;
 
           if (!this.componentWithListeners.includes(i)) {
-            bindEventListener(element, template, baseClass);
+            bindEventListener(element, template, component);
             this.componentWithListeners.push(i);
           }
         }
