@@ -135,18 +135,27 @@ Output:
 ```
 
 ### Listeners
-__bq-click__
+__bq-click__ 
+
+Counter example:
 ```javascript
 ...
 @Component({
-    selector: 'hello-world-component',
-    template: `<button bq-click="myFunc()">Click</button>`,
+    selector: 'counter',
+    template: `
+        <div>
+            <p>Current count: {counter}</p>
+            <button bq-click="count()">Increase count</button>
+        </div>
+    `,
 })
-export class HelloWorldComponent {
-    public myFunc() {
-       console.log('yey! Element was clicked!!');
+export class CounterComponent {
+    public counter = 0;
+
+    count() {
+        this.counter = this.counter + 1;
+        console.log('Counter increased to =>', this.counter);
     }
-    ...
 }
 ```
 
