@@ -2,7 +2,10 @@
   "name": "bananaquitjs",
   "version": "0.1.5",
   "description": "Bananaquit is a small and simple component framework using TypeScript/JavaScript.",
-  "main": "index.js",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
   "types": "index.d.ts",
   "repository": {
     "type": "git",
@@ -18,18 +21,13 @@
     "url": "https://github.com/tgrassl/bananaquit/issues"
   },
   "homepage": "https://github.com/tgrassl/bananaquit#readme",
-  "files": [
-    "core/*",
-    "index*"
-  ],
+  "files": ["dist/*"],
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "clean": "ts-node dev-scripts/cleanup.ts",
-    "watch": "ts-node dev-scripts/dev-file-watcher.ts",
-    "moveDist": "ts-node dev-scripts/dist-mover.ts",
-    "build": "tsc",
-    "prepare": "npm run clean && npm run build && npm run moveDist",
+    "watch": "microbundle watch",
+    "build": "microbundle",
+    "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "postpublish": "npm run clean",
     "preversion": "npm run lint",
@@ -44,6 +42,7 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "microbundle": "^0.11.0",
     "prettier": "^1.18.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.19.0",
