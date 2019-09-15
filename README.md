@@ -35,7 +35,6 @@ const appComponents = []
 new Bootstrapper().bootstrapApp(appComponents);
 ```
 
-*(The Getting Started process will be made easier with the relase of the bananaquit-cli)*
 ## Components
 
 To create a new component create a new .ts file (e.g. login.component.ts) in your project.
@@ -168,7 +167,6 @@ Lifecycle | Description | Usage
 **OnChanges** | Called after every change on the page. | Implement the OnChanges interface and place your code inside `onChanges()`. </br> Use `onChanges(changes)` to work with the `BasicChanges` object.
 
 ## TODO
-- Improvements
-- Implement virtual-dom
-- Enhanced Lifecycles
-- CLI to create components, etc.
+- Implement virtual-dom or morphdom
+- Lifecycle Hooks
+- Maybe a cli to create components, etc.
