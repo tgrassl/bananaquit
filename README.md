@@ -1,10 +1,19 @@
-<img src="https://i.postimg.cc/RCXsrmv6/bananaquit-logo.png" width="400" alt="Bananaquit"/>
+![]( https://i.imgsafe.org/73/737be55834.png)
 
 [![forthebadge](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
 [![npm](https://img.shields.io/npm/v/bananaquitjs?style=for-the-badge)](https://www.npmjs.com/package/bananaquitjs)
 
 Bananaquit is a small and simple component framework for apps using TypeScript.<br/>
+
+## Table of contents
+
+- [Install](#install)
+- [Getting Started](#getting-started)
+- [Components](#components)
+- [Data Binding](#data-binding)
+- [Listeners](#listeners)
+- [Lifecycles](#lifecycles)
 
 ## Install 
 Install bananaquit using npm:
